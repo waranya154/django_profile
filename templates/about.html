@@ -7,212 +7,111 @@
     <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
     <style>
+        :root {
+            --primary: #ec4899;
+            --secondary: #be185d;
+            --accent: #831843;
+            --light: #fce7f3;
+            --bg: #fdf2f8;
+            --border: #fbcfe8;
+            --shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+        }
+        
         body {
-            background: #fdf2f8;
+            background: var(--bg);
             min-height: 100vh;
             font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
         }
-        .hero-section {
+        
+        .profile-info, .table-container {
             background: white;
             border-radius: 20px;
-            padding: 60px 40px;
-            margin: 40px 0;
-            text-align: center;
-            color: #ec4899;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-            border: 2px solid #fbcfe8;
-            animation: fadeInDown 0.8s ease-out;
+            padding: 20px;
+            margin: 20px 0;
+            box-shadow: var(--shadow);
+            border: 2px solid var(--border);
+            animation: fadeInUp 0.8s ease-out;
         }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
+        
+        .table-container { padding: 30px; }
+        
         @keyframes fadeInUp {
             from { opacity: 0; transform: translateY(30px); }
             to { opacity: 1; transform: translateY(0); }
         }
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ec4899;
+        
+        h2, h3 { 
+            color: var(--primary) !important;
+            font-size: 1.8rem;
+            margin-bottom: 15px !important;
         }
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #be185d;
+        
+        .info-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr));
+            gap: 15px;
+            margin-top: 15px;
         }
-        .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        .stat-item {
+        
+        .info-item {
+            background: var(--light);
+            padding: 15px;
+            border-radius: 12px;
             text-align: center;
-            padding: 20px;
-            background: #fce7f3;
-            border-radius: 15px;
-            min-width: 120px;
             border: 1px solid #f9a8d4;
         }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #be185d;
+        
+        .info-icon {
+            font-size: 1.8rem;
+            margin-bottom: 10px;
+            color: var(--primary);
         }
-        .stat-label {
+        
+        .info-title {
+            font-size: 1.1rem;
+            font-weight: 600;
+            margin-bottom: 8px;
+            color: var(--secondary);
+        }
+        
+        .info-desc {
+            color: var(--accent);
+            line-height: 1.4;
             font-size: 0.9rem;
-            color: #831843;
-        }
-        .table-container, .profile-info {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-            border: 2px solid #fbcfe8;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-        
-        /* Compact profile info styles */
-        .profile-info {
-            padding: 20px; /* Reduced from 30px */
-            margin: 20px 0; /* Reduced from 30px */
-        }
-        
-        .profile-info h2 {
-            font-size: 1.8rem; /* Reduced from default */
-            margin-bottom: 15px !important; /* Reduced from 25px */
         }
         
         .table {
-            background: #fdf2f8;
+            background: var(--bg);
             border-radius: 15px;
             overflow: hidden;
         }
+        
         .table thead {
-            background: #ec4899;
+            background: var(--primary);
         }
+        
         .table thead td {
             color: white;
             font-weight: 600;
             padding: 18px;
             border: none;
         }
+        
         .table tbody td {
-            color: #831843;
+            color: var(--accent);
             padding: 15px;
-            border-color: #fbcfe8;
+            border-color: var(--border);
         }
+        
         .table-hover tbody tr:hover {
-            background-color: #fce7f3;
-        }
-        .section-title {
-            text-align: center;
-            color: #ec4899;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 50px 0 30px 0;
-        }
-        .card {
-            background: white;
-            border: 2px solid #fbcfe8;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
-        }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.2);
-            border-color: #f9a8d4;
-        }
-        .card-img-top {
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
-        }
-        .card:hover .card-img-top {
-            transform: scale(1.02);
-        }
-        .card-title {
-            color: #be185d;
-            font-weight: 600;
-            font-size: 1.3rem;
-        }
-        .card-text {
-            color: #831843;
-            line-height: 1.6;
-        }
-        .btn-primary {
-            background: #ec4899;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: #be185d;
-            transform: translateY(-2px);
+            background-color: var(--light);
         }
         
-        /* Compact info grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced from 300px */
-            gap: 15px; /* Reduced from 30px */
-            margin-top: 15px; /* Reduced from 30px */
-        }
-        
-        /* Compact info items */
-        .info-item {
-            background: #fce7f3;
-            padding: 15px; /* Reduced from 25px */
-            border-radius: 12px; /* Reduced from 15px */
-            text-align: center;
-            border: 1px solid #f9a8d4;
-        }
-        
-        .info-icon {
-            font-size: 1.8rem; /* Reduced from 2.5rem */
-            margin-bottom: 10px; /* Reduced from 15px */
-            color: #ec4899;
-        }
-        
-        .info-title {
-            font-size: 1.1rem; /* Reduced from 1.3rem */
-            font-weight: 600;
-            margin-bottom: 8px; /* Reduced from 10px */
-            color: #be185d;
-        }
-        
-        .info-desc {
-            color: #831843;
-            line-height: 1.4; /* Reduced from 1.6 */
-            font-size: 0.9rem; /* Added smaller font size */
-        }
-        
-        .text-white {
-            color: #ec4899 !important;
-        }
-        .badge {
-            border-radius: 15px;
-            padding: 8px 12px;
-        }
-        .bg-success { background: #ec4899 !important; }
-        .bg-primary { background: #be185d !important; }
-        .bg-danger { background: #f472b6 !important; }
-        .bg-warning { background: #f9a8d4 !important; color: #831843 !important; }
-        .bg-info { background: #ec4899 !important; }
-        .bg-secondary { background: #be185d !important; }
         @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .stats-container { gap: 20px; }
-            .section-title { font-size: 2rem; }
+            .profile-info {
+                padding: 15px;
+                margin: 15px 0;
+            }
             .info-grid {
                 grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
                 gap: 12px;
@@ -220,19 +119,34 @@
             .info-item {
                 padding: 12px;
             }
-            .profile-info {
-                padding: 15px;
-                margin: 15px 0;
-            }
         }
     </style>
 </head>
 
 <body>
     <div class="container">
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/"
+                  >หน้าแรก</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">เกี่ยวกับฉัน</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">ติดต่อ</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
         <!-- Compact Profile Info -->
         <div class="profile-info">
-            <h2 class="text-center mb-4 text-white">
+            <h2 class="text-center mb-4">
                 <i class="fas fa-user-circle"></i> เกี่ยวกับฉัน
             </h2>
             <div class="info-grid">
@@ -269,7 +183,7 @@
 
         <!-- Table Section -->
         <div class="table-container">
-            <h3 class="text-center text-white mb-4">
+            <h3 class="text-center mb-4">
                 <i class="fas fa-table"></i> ข้อมูลสำคัญ
             </h3>
             <table class="table table-hover table-striped">

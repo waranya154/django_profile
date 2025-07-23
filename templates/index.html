@@ -1,331 +1,720 @@
 <!DOCTYPE html>
 <html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>My Profile - VASINEE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
+    <link
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
+      rel="stylesheet"
+    />
+    <link
+      rel="stylesheet"
+      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
+    />
     <style>
-        body {
-            background: #fdf2f8;
-            min-height: 100vh;
-            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+      :root {
+        --pink: #ec4899;
+        --pink-dark: #be185d;
+        --pink-darker: #831843;
+        --pink-light: #fce7f3;
+        --pink-lighter: #fbcfe8;
+        --pink-bg: #fdf2f8;
+      }
+
+      body {
+        background: linear-gradient(135deg, var(--pink-bg) 0%, #fff1f2 100%);
+        min-height: 100vh;
+        font-family: "Segoe UI", sans-serif;
+      }
+
+      @keyframes fadeInDown {
+        from {
+          opacity: 0;
+          transform: translateY(-30px);
         }
-        .hero-section {
-            background: white;
-            border-radius: 20px;
-            padding: 60px 40px;
-            margin: 40px 0;
-            text-align: center;
-            color: #ec4899;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-            border: 2px solid #fbcfe8;
-            animation: fadeInDown 0.8s ease-out;
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
+      }
+
+      @keyframes fadeInUp {
+        from {
+          opacity: 0;
+          transform: translateY(30px);
         }
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(30px); }
-            to { opacity: 1; transform: translateY(0); }
+        to {
+          opacity: 1;
+          transform: translateY(0);
         }
+      }
+
+      @keyframes pulse {
+        0% {
+          transform: scale(1);
+        }
+        50% {
+          transform: scale(1.05);
+        }
+        100% {
+          transform: scale(1);
+        }
+      }
+
+      @keyframes float {
+        0%,
+        100% {
+          transform: translateY(0px);
+        }
+        50% {
+          transform: translateY(-10px);
+        }
+      }
+
+      .section-card {
+        background: white;
+        border-radius: 20px;
+        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
+        border: 2px solid var(--pink-lighter);
+        backdrop-filter: blur(10px);
+      }
+
+      .hero-section {
+        padding: 60px 40px;
+        margin: 40px 0;
+        text-align: center;
+        color: var(--pink);
+        animation: fadeInDown 0.8s ease-out;
+        position: relative;
+        overflow: hidden;
+      }
+
+      .hero-section::before {
+        content: "";
+        position: absolute;
+        top: -50%;
+        left: -50%;
+        width: 200%;
+        height: 200%;
+        background: linear-gradient(
+          45deg,
+          transparent,
+          rgba(236, 72, 153, 0.05),
+          transparent
+        );
+        animation: float 6s ease-in-out infinite;
+        z-index: 0;
+      }
+
+      .hero-content {
+        position: relative;
+        z-index: 1;
+      }
+
+      .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        margin-bottom: 20px;
+        color: var(--pink);
+        text-shadow: 2px 2px 4px rgba(236, 72, 153, 0.1);
+      }
+
+      .hero-subtitle {
+        font-size: 1.3rem;
+        margin-bottom: 30px;
+        color: var(--pink-dark);
+      }
+
+      .stats-container {
+        display: flex;
+        justify-content: center;
+        gap: 40px;
+        margin-top: 30px;
+        flex-wrap: wrap;
+      }
+
+      .stat-item {
+        text-align: center;
+        padding: 20px;
+        background: var(--pink-light);
+        border-radius: 15px;
+        min-width: 120px;
+        border: 1px solid #f9a8d4;
+        transition: all 0.3s ease;
+        cursor: pointer;
+      }
+
+      .stat-item:hover {
+        transform: translateY(-5px);
+        box-shadow: 0 8px 20px rgba(236, 72, 153, 0.2);
+        animation: pulse 1s infinite;
+      }
+
+      .stat-number {
+        font-size: 2rem;
+        font-weight: bold;
+        color: var(--pink-dark);
+      }
+
+      .stat-label {
+        font-size: 0.9rem;
+        color: var(--pink-darker);
+      }
+
+      .section-title {
+        text-align: center;
+        color: var(--pink);
+        font-size: 2.5rem;
+        font-weight: 700;
+        margin: 50px 0 30px 0;
+        position: relative;
+      }
+
+      .section-title::after {
+        content: "";
+        position: absolute;
+        bottom: -10px;
+        left: 50%;
+        transform: translateX(-50%);
+        width: 100px;
+        height: 4px;
+        background: linear-gradient(90deg, var(--pink), var(--pink-light));
+        border-radius: 2px;
+      }
+
+      .carousel-container {
+        margin: 40px 0;
+        border-radius: 20px;
+        overflow: hidden;
+        box-shadow: 0 8px 30px rgba(236, 72, 153, 0.15);
+      }
+
+      .carousel-item img {
+        height: 400px;
+        object-fit: cover;
+        width: 100%;
+      }
+
+      .carousel-control-prev,
+      .carousel-control-next {
+        background: linear-gradient(45deg, var(--pink), var(--pink-dark));
+        border-radius: 50%;
+        width: 50px;
+        height: 50px;
+        top: 50%;
+        transform: translateY(-50%);
+      }
+
+      .carousel-control-prev {
+        left: 20px;
+      }
+
+      .carousel-control-next {
+        right: 20px;
+      }
+
+      .card {
+        background: white;
+        border: 2px solid var(--pink-lighter);
+        border-radius: 20px;
+        overflow: hidden;
+        transition: all 0.3s ease;
+        box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1);
+        animation: fadeInUp 0.8s ease-out 0.4s both;
+        height: 100%;
+      }
+
+      .card:hover {
+        transform: translateY(-10px) scale(1.02);
+        box-shadow: 0 15px 35px rgba(236, 72, 153, 0.25);
+        border-color: var(--pink);
+      }
+
+      .card-img-top {
+        height: 250px;
+        object-fit: cover;
+        transition: transform 0.3s ease;
+      }
+
+      .card:hover .card-img-top {
+        transform: scale(1.1);
+      }
+
+      .card-title {
+        color: var(--pink-dark);
+        font-weight: 600;
+        font-size: 1.3rem;
+      }
+
+      .card-text {
+        color: var(--pink-darker);
+        line-height: 1.6;
+      }
+
+      .badge {
+        border-radius: 15px;
+        padding: 8px 12px;
+        font-size: 0.8rem;
+        transition: all 0.3s ease;
+      }
+
+      .badge:hover {
+        transform: scale(1.1);
+      }
+
+      .bg-success {
+        background: var(--pink) !important;
+      }
+      .bg-primary {
+        background: var(--pink-dark) !important;
+      }
+      .bg-danger {
+        background: #f472b6 !important;
+      }
+      .bg-warning {
+        background: #f9a8d4 !important;
+        color: var(--pink-darker) !important;
+      }
+      .bg-info {
+        background: var(--pink) !important;
+      }
+      .bg-secondary {
+        background: var(--pink-dark) !important;
+      }
+
+      .footer {
+        background: linear-gradient(135deg, var(--pink-dark), var(--pink));
+        color: white;
+        padding: 40px 0;
+        margin-top: 60px;
+        border-radius: 20px 20px 0 0;
+      }
+
+      .social-links {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+        margin-top: 20px;
+      }
+
+      .social-link {
+        display: inline-flex;
+        align-items: center;
+        justify-content: center;
+        width: 50px;
+        height: 50px;
+        background: rgba(255, 255, 255, 0.2);
+        border-radius: 50%;
+        color: white;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+
+      .social-link:hover {
+        background: white;
+        color: var(--pink);
+        transform: translateY(-5px) scale(1.1);
+      }
+
+      .skills-section {
+        background: white;
+        border-radius: 20px;
+        padding: 40px;
+        margin: 40px 0;
+        box-shadow: 0 8px 30px rgba(236, 72, 153, 0.1);
+      }
+
+      .skill-item {
+        margin-bottom: 20px;
+      }
+
+      .skill-name {
+        color: var(--pink-dark);
+        font-weight: 600;
+        margin-bottom: 8px;
+      }
+
+      .progress {
+        height: 10px;
+        border-radius: 10px;
+        background: var(--pink-light);
+      }
+
+      .progress-bar {
+        background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+        border-radius: 10px;
+        transition: width 2s ease-in-out;
+      }
+
+      @media (max-width: 768px) {
         .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            margin-bottom: 20px;
-            color: #ec4899;
-        }
-        .hero-subtitle {
-            font-size: 1.3rem;
-            margin-bottom: 30px;
-            color: #be185d;
+          font-size: 2.5rem;
         }
         .stats-container {
-            display: flex;
-            justify-content: center;
-            gap: 40px;
-            margin-top: 30px;
-            flex-wrap: wrap;
-        }
-        .stat-item {
-            text-align: center;
-            padding: 20px;
-            background: #fce7f3;
-            border-radius: 15px;
-            min-width: 120px;
-            border: 1px solid #f9a8d4;
-        }
-        .stat-number {
-            font-size: 2rem;
-            font-weight: bold;
-            color: #be185d;
-        }
-        .stat-label {
-            font-size: 0.9rem;
-            color: #831843;
-        }
-        .table-container, .profile-info {
-            background: white;
-            border-radius: 20px;
-            padding: 30px;
-            margin: 30px 0;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-            border: 2px solid #fbcfe8;
-            animation: fadeInUp 0.8s ease-out 0.2s both;
-        }
-        
-        /* Compact profile info styles */
-        .profile-info {
-            padding: 20px; /* Reduced from 30px */
-            margin: 20px 0; /* Reduced from 30px */
-        }
-        
-        .profile-info h2 {
-            font-size: 1.8rem; /* Reduced from default */
-            margin-bottom: 15px !important; /* Reduced from 25px */
-        }
-        
-        .table {
-            background: #fdf2f8;
-            border-radius: 15px;
-            overflow: hidden;
-        }
-        .table thead {
-            background: #ec4899;
-        }
-        .table thead td {
-            color: white;
-            font-weight: 600;
-            padding: 18px;
-            border: none;
-        }
-        .table tbody td {
-            color: #831843;
-            padding: 15px;
-            border-color: #fbcfe8;
-        }
-        .table-hover tbody tr:hover {
-            background-color: #fce7f3;
+          gap: 20px;
         }
         .section-title {
-            text-align: center;
-            color: #ec4899;
-            font-size: 2.5rem;
-            font-weight: 700;
-            margin: 50px 0 30px 0;
+          font-size: 2rem;
         }
-        .card {
-            background: white;
-            border: 2px solid #fbcfe8;
-            border-radius: 20px;
-            overflow: hidden;
-            transition: all 0.3s ease;
-            box-shadow: 0 4px 15px rgba(236, 72, 153, 0.1);
-            animation: fadeInUp 0.8s ease-out 0.4s both;
+        .carousel-item img {
+          height: 250px;
         }
-        .card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 8px 25px rgba(236, 72, 153, 0.2);
-            border-color: #f9a8d4;
+      }
+
+      .loading-overlay {
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        height: 100%;
+        background: var(--pink-bg);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+        transition: opacity 0.5s ease;
+      }
+
+      .spinner {
+        width: 60px;
+        height: 60px;
+        border: 4px solid var(--pink-light);
+        border-top: 4px solid var(--pink);
+        border-radius: 50%;
+        animation: spin 1s linear infinite;
+      }
+
+      @keyframes spin {
+        0% {
+          transform: rotate(0deg);
         }
-        .card-img-top {
-            height: 250px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+        100% {
+          transform: rotate(360deg);
         }
-        .card:hover .card-img-top {
-            transform: scale(1.02);
-        }
-        .card-title {
-            color: #be185d;
-            font-weight: 600;
-            font-size: 1.3rem;
-        }
-        .card-text {
-            color: #831843;
-            line-height: 1.6;
-        }
-        .btn-primary {
-            background: #ec4899;
-            border: none;
-            border-radius: 25px;
-            padding: 10px 25px;
-            font-weight: 600;
-            transition: all 0.3s ease;
-        }
-        .btn-primary:hover {
-            background: #be185d;
-            transform: translateY(-2px);
-        }
-        
-        /* Compact info grid */
-        .info-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fit, minmax(250px, 1fr)); /* Reduced from 300px */
-            gap: 15px; /* Reduced from 30px */
-            margin-top: 15px; /* Reduced from 30px */
-        }
-        
-        /* Compact info items */
-        .info-item {
-            background: #fce7f3;
-            padding: 15px; /* Reduced from 25px */
-            border-radius: 12px; /* Reduced from 15px */
-            text-align: center;
-            border: 1px solid #f9a8d4;
-        }
-        
-        .info-icon {
-            font-size: 1.8rem; /* Reduced from 2.5rem */
-            margin-bottom: 10px; /* Reduced from 15px */
-            color: #ec4899;
-        }
-        
-        .info-title {
-            font-size: 1.1rem; /* Reduced from 1.3rem */
-            font-weight: 600;
-            margin-bottom: 8px; /* Reduced from 10px */
-            color: #be185d;
-        }
-        
-        .info-desc {
-            color: #831843;
-            line-height: 1.4; /* Reduced from 1.6 */
-            font-size: 0.9rem; /* Added smaller font size */
-        }
-        
-        .text-white {
-            color: #ec4899 !important;
-        }
-        .badge {
-            border-radius: 15px;
-            padding: 8px 12px;
-        }
-        .bg-success { background: #ec4899 !important; }
-        .bg-primary { background: #be185d !important; }
-        .bg-danger { background: #f472b6 !important; }
-        .bg-warning { background: #f9a8d4 !important; color: #831843 !important; }
-        .bg-info { background: #ec4899 !important; }
-        .bg-secondary { background: #be185d !important; }
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .stats-container { gap: 20px; }
-            .section-title { font-size: 2rem; }
-            .info-grid {
-                grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
-                gap: 12px;
-            }
-            .info-item {
-                padding: 12px;
-            }
-            .profile-info {
-                padding: 15px;
-                margin: 15px 0;
-            }
-        }
+      }
     </style>
-</head>
+  </head>
 
-<body>
-    <div class="container">
-        <!-- Hero Section -->
-        <div class="hero-section">
-            <h1 class="hero-title">
-                <i class="fas fa-star"></i> นางสาววาสินี มาฤทธิ์ <i class="fas fa-star"></i>
-            </h1>
-            <p class="hero-subtitle">
-                <i class="fas fa-graduation-cap"></i> My Profile
-                <i class="fas "></i> 6712732126 | มหาวิทยาลัยราชภัฏศรีสะเกษ
-            </p>
-            <div class="stats-container">
-                <div class="stat-item">
-                    <div class="stat-number">4.0</div>
-                    <div class="stat-label">เป้าหมาย GPA</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">100%</div>
-                    <div class="stat-label">ความมุ่งมั่น</div>
-                </div>
-                <div class="stat-item">
-                    <div class="stat-number">∞</div>
-                    <div class="stat-label">ความฝัน</div>
-                </div>
-            </div>
-        </div>
-
-        <h2 class="section-title">
-            <i class="fas fa-images"></i> ภาพบรรยากาศชีวิตการเรียน
-        </h2>
-        <div class="row 1">
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui1.png" 
-                        class="card-img-top" alt="ภาพบรรยากาศ 1">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-graduation-cap" style="color: #ec4899;"></i> ภาพบรรยากาศ 1
-                        </h5>
-                        <p class="card-text">นักเรียนผู้มุ่งมั่นเดินบนเส้นทางแห่งความรู้ เป้าหมายคือเกรด A ในทุกวิชา! 📚✨</p>
-                        <div class="text-center">
-                            <span class="badge bg-success me-2">เป้าหมาย</span>
-                            <span class="badge bg-primary">ความมุ่งมั่น</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui8.png" 
-                        class="card-img-top" alt="ภาพบรรยากาศ 2">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-heart" style="color: #f472b6;"></i> ภาพบรรยากาศ 2
-                        </h5>
-                        <p class="card-text">ความสุขเล็กๆ เกิดจากการให้โดยไม่หวังผลตอบแทน การช่วยเหลือผู้อื่นคือความหมายแท้จริงของชีวิต 💝</p>
-                        <div class="text-center">
-                            <span class="badge bg-danger me-2">ความใจดี</span>
-                            <span class="badge bg-warning">การให้</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui9.png" 
-                        class="card-img-top" alt="ภาพบรรยากาศ 3">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-users" style="color: #ec4899;"></i> ภาพบรรยากาศ 3
-                        </h5>
-                        <p class="card-text">กีฬาสีไม่ใช่แค่การแข่ง...แต่คือวันที่เราทุกคนเป็นหนึ่งเดียว แม้จะคนละคณะ แต่ตอนเชียร์กันมันรู้สึกเหมือนครอบครัวใหญ่</p>
-                        <div class="text-center">
-                            <span class="badge bg-info me-2">ความสามัคคี</span>
-                            <span class="badge bg-secondary">กีฬาสี</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-            <div class="col-md-3 mb-4 d-flex justify-content-center">
-                <div class="card" style="width: 18rem;">
-                    <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui3.png" 
-                        class="card-img-top" alt="ภาพบรรยากาศ 4">
-                    <div class="card-body">
-                        <h5 class="card-title">
-                            <i class="fas fa-apple-alt" style="color: #ec4899;"></i> ภาพบรรยากาศ 4
-                        </h5>
-                        <p class="card-text">ชอบเรียนที่ศรีสะเกษเพราะที่นี่ไม่เพียงมีความรู้ แต่ยังมีทุเรียนอร่อยที่สุดในโลก! 🍈👑</p>
-                        <div class="text-center">
-                            <span class="badge bg-success me-2">ศรีสะเกษ</span>
-                            <span class="badge bg-warning">ทุเรียน</span>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
+  <body>
+    <!-- Loading Overlay -->
+    <div class="loading-overlay" id="loadingOverlay">
+      <div class="spinner"></div>
     </div>
 
+    <div class="container">
+      <nav class="navbar navbar-expand-lg navbar-light bg-light">
+        <div class="container-fluid">
+          <div class="collapse navbar-collapse" id="navbarNav">
+            <ul class="navbar-nav">
+              <li class="nav-item">
+                <a class="nav-link active" aria-current="page" href="/"
+                  >หน้าแรก</a
+                >
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/about">เกี่ยวกับฉัน</a>
+              </li>
+              <li class="nav-item">
+                <a class="nav-link" href="/contact">ติดต่อ</a>
+              </li>
+            </ul>
+          </div>
+        </div>
+      </nav>
+      <!-- Hero Section -->
+      <div class="hero-section section-card">
+        <div class="hero-content">
+          <h1 class="hero-title">
+            <i class="fas fa-star"></i> นางสาววาสินี มาฤทธิ์
+            <i class="fas fa-star"></i>
+          </h1>
+          <p class="hero-subtitle">
+            <i class="fas fa-graduation-cap"></i> My Profile
+            <i class="fas fa-id-card"></i> 6712732126 |
+            มหาวิทยาลัยราชภัฏศรีสะเกษ
+          </p>
+          <div class="stats-container">
+            <div
+              class="stat-item"
+              data-bs-toggle="tooltip"
+              title="เป้าหมายในการเรียน"
+            >
+              <div class="stat-number">4.0</div>
+              <div class="stat-label">เป้าหมาย GPA</div>
+            </div>
+            <div
+              class="stat-item"
+              data-bs-toggle="tooltip"
+              title="ความตั้งใจในการเรียน"
+            >
+              <div class="stat-number">100%</div>
+              <div class="stat-label">ความมุ่งมั่น</div>
+            </div>
+            <div
+              class="stat-item"
+              data-bs-toggle="tooltip"
+              title="ความฝันไม่มีที่สิ้นสุด"
+            >
+              <div class="stat-number">∞</div>
+              <div class="stat-label">ความฝัน</div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <!-- Image Carousel -->
+      <div class="carousel-container">
+        <div
+          id="carouselExampleControls"
+          class="carousel slide"
+          data-bs-ride="carousel"
+          data-bs-interval="4000"
+        >
+          <div class="carousel-inner">
+            <div class="carousel-item active">
+              <img
+                src="https://scontent-sin11-2.xx.fbcdn.net/v/t39.30808-6/486614177_1056761386497472_1373887252774764261_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGPHthRtTZZR8fGhp658cZTZq5Dj9bN_r5mrkOP1s3-vpGmX5tGOzPltB6g6b7xF_XgaOTRGiA54QnRfBw4RFJ1&_nc_ohc=gO-xxsj8XVIQ7kNvwFw7ZDZ&_nc_oc=AdkUEkqnLdJbkoM6FDa31WclGbyYOQo4MLQ63Xje4Ad9aqULIVg50oyhCIYdLd-VXHz3YPvi6ZdVE8-4jz4plivg&_nc_zt=23&_nc_ht=scontent-sin11-2.xx&_nc_gid=fFGvoB9wX8KcL7L783s54Q&oh=00_AfSRONpCyrFnVsygg5QE0RZGeCJOyJNT1ByCa8AV0ruFNA&oe=68866382"
+                class="d-block w-100"
+                alt="ห้องเรียนมหาวิทยาลัย"
+              />
+              <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/517391795_1144094211097522_168857366512749669_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF0IiH6WltN1c3mQBmIJdNjEuVQ7TQmNOES5VDtNCY04QHmL391xJGFxg6vrlhtEUYlQfR24aZt9oM26vzhMmCT&_nc_ohc=nDec0gbHFbAQ7kNvwEXrTcI&_nc_oc=Adn5Yo1HNADYDBiQQHhntHmgK4MLCMqkdO_nGZFb_vS22wI4_8lqI4c-x4DhoXzhTw6Dt7B4-9NwTGytaXznk0fM&_nc_zt=23&_nc_ht=scontent-sin2-1.xx&_nc_gid=esuuAsvxQtrm5jQkEJji4g&oh=00_AfS3VUBpmQtGve9B6WJ8R2UD1TBvdXdTjq3qhS4neKxucA&oe=688676DD"
+                class="d-block w-100"
+                alt="ห้องสมุดมหาวิทยาลัย"
+              />
+              <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+            <div class="carousel-item">
+              <img
+                src="https://scontent-sin2-3.xx.fbcdn.net/v/t39.30808-6/512682644_1128734065966870_3479146191705279387_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHkucpPWdmBjUnUdIfWlAws_kVrbIbE4WT-RWtshsThZHRyhOHcDal6pvL1zF1Q7Gr66gEwFSvzGAZJBman7bVN&_nc_ohc=26lKF6AhWFYQ7kNvwH2Ij86&_nc_oc=Adl0yvPdD_SHorae6zDUVx-SMVYCOWUiEYC53hvoWfKu1bDhxeQdnfVZpV4riRXKIxhWfKOKCF4dtpzhg3W4xGFi&_nc_zt=23&se=-1&_nc_ht=scontent-sin2-3.xx&_nc_gid=-3QoXvdTUSzXd7etPK9s4Q&oh=00_AfR7qxHPL_f0sA1OQkIOMKKe9IswmbGICdAB9z5KZu5NzQ&oe=68868482"
+                class="d-block w-100"
+                alt="บรรยากาศมหาวิทยาลัย"
+              />
+              <div class="carousel-caption d-none d-md-block"></div>
+            </div>
+          </div>
+          <button
+            class="carousel-control-prev"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="prev"
+          >
+            <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Previous</span>
+          </button>
+          <button
+            class="carousel-control-next"
+            type="button"
+            data-bs-target="#carouselExampleControls"
+            data-bs-slide="next"
+          >
+            <span class="carousel-control-next-icon" aria-hidden="true"></span>
+            <span class="visually-hidden">Next</span>
+          </button>
+        </div>
+      </div>
+
+      <h2 class="section-title">
+        <i class="fas fa-images"></i> ภาพบรรยากาศชีวิตการเรียน
+      </h2>
+      <div class="row">
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://vasinee04.github.io/myweb_profile/assets/img/ui1.png"
+              class="card-img-top"
+              alt="ภาพบรรยากาศ 1"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-graduation-cap" style="color: #ec4899"></i>
+                ภาพบรรยากาศ 1
+              </h5>
+              <p class="card-text">
+                นักเรียนผู้มุ่งมั่นเดินบนเส้นทางแห่งความรู้ เป้าหมายคือเกรด A
+                ในทุกวิชา! 📚✨
+              </p>
+              <div class="text-center">
+                <span class="badge bg-success me-2">เป้าหมาย</span>
+                <span class="badge bg-primary">ความมุ่งมั่น</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://vasinee04.github.io/myweb_profile/assets/img/ui8.png"
+              class="card-img-top"
+              alt="ภาพบรรยากาศ 2"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-heart" style="color: #f472b6"></i> ภาพบรรยากาศ
+                2
+              </h5>
+              <p class="card-text">
+                ความสุขเล็กๆ เกิดจากการให้โดยไม่หวังผลตอบแทน
+                การช่วยเหลือผู้อื่นคือความหมายแท้จริงของชีวิต 💝
+              </p>
+              <div class="text-center">
+                <span class="badge bg-danger me-2">ความใจดี</span>
+                <span class="badge bg-warning">การให้</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://vasinee04.github.io/myweb_profile/assets/img/ui9.png"
+              class="card-img-top"
+              alt="ภาพบรรยากาศ 3"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-users" style="color: #ec4899"></i> ภาพบรรยากาศ
+                3
+              </h5>
+              <p class="card-text">
+                กีฬาสีไม่ใช่แค่การแข่ง...แต่คือวันที่เราทุกคนเป็นหนึ่งเดียว
+                แม้จะคนละคณะ แต่ตอนเชียร์กันมันรู้สึกเหมือนครอบครัวใหญ่
+              </p>
+              <div class="text-center">
+                <span class="badge bg-info me-2">ความสามัคคี</span>
+                <span class="badge bg-secondary">กีฬาสี</span>
+              </div>
+            </div>
+          </div>
+        </div>
+        <div class="col-md-3 mb-4 d-flex justify-content-center">
+          <div class="card" style="width: 18rem">
+            <img
+              src="https://vasinee04.github.io/myweb_profile/assets/img/ui3.png"
+              class="card-img-top"
+              alt="ภาพบรรยากาศ 4"
+            />
+            <div class="card-body">
+              <h5 class="card-title">
+                <i class="fas fa-apple-alt" style="color: #ec4899"></i>
+                ภาพบรรยากาศ 4
+              </h5>
+              <p class="card-text">
+                ชอบเรียนที่ศรีสะเกษเพราะที่นี่ไม่เพียงมีความรู้
+                แต่ยังมีทุเรียนอร่อยที่สุดในโลก! 🍈👑
+              </p>
+              <div class="text-center">
+                <span class="badge bg-success me-2">ศรีสะเกษ</span>
+                <span class="badge bg-warning">ทุเรียน</span>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <!-- Footer -->
+    <footer class="footer">
+      <div class="container text-center">
+        <p>มหาวิทยาลัยราชภัฏศรีสะเกษ | รหัสนักศึกษา 6712732126</p>
+        <p class="mt-3">
+          &copy; 2025 VASINEE Profile. Made with
+          <i class="fas fa-heart" style="color: #ff69b4"></i>
+        </p>
+      </div>
+    </footer>
+
     <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"></script>
-</body>
+    <script>
+      // Loading animation
+      window.addEventListener("load", function () {
+        setTimeout(() => {
+          document.getElementById("loadingOverlay").style.opacity = "0";
+          setTimeout(() => {
+            document.getElementById("loadingOverlay").style.display = "none";
+          }, 500);
+        }, 1000);
+      });
+
+      // Initialize tooltips
+      var tooltipTriggerList = [].slice.call(
+        document.querySelectorAll('[data-bs-toggle="tooltip"]')
+      );
+      var tooltipList = tooltipTriggerList.map(function (tooltipTriggerEl) {
+        return new bootstrap.Tooltip(tooltipTriggerEl);
+      });
+
+      // Animate progress bars when scrolled into view
+      const observerOptions = {
+        threshold: 0.5,
+        rootMargin: "0px 0px -100px 0px",
+      };
+
+      const observer = new IntersectionObserver(function (entries) {
+        entries.forEach((entry) => {
+          if (entry.isIntersecting) {
+            const progressBars = entry.target.querySelectorAll(".progress-bar");
+            progressBars.forEach((bar) => {
+              const width = bar.style.width;
+              bar.style.width = "0%";
+              setTimeout(() => {
+                bar.style.width = width;
+              }, 200);
+            });
+          }
+        });
+      }, observerOptions);
+
+      const skillsSection = document.querySelector(".skills-section");
+      if (skillsSection) {
+        observer.observe(skillsSection);
+      }
+
+      // Add smooth scrolling for anchor links
+      document.querySelectorAll('a[href^="#"]').forEach((anchor) => {
+        anchor.addEventListener("click", function (e) {
+          e.preventDefault();
+          const target = document.querySelector(this.getAttribute("href"));
+          if (target) {
+            target.scrollIntoView({
+              behavior: "smooth",
+              block: "start",
+            });
+          }
+        });
+      });
+
+      // Add parallax effect to hero section
+      window.addEventListener("scroll", () => {
+        const scrolled = window.pageYOffset;
+        const heroSection = document.querySelector(".hero-section");
+        if (heroSection) {
+          heroSection.style.transform = `translateY(${scrolled * 0.5}px)`;
+        }
+      });
+
+      // Add click effects to stat items
+      document.querySelectorAll(".stat-item").forEach((item) => {
+        item.addEventListener("click", function () {
+          this.style.transform = "scale(0.95)";
+          setTimeout(() => {
+            this.style.transform = "";
+          }, 150);
+        });
+      });
+
+      // Auto-start carousel indicators
+      const carousel = document.querySelector("#carouselExampleControls");
+      if (carousel) {
+        const carouselInstance = new bootstrap.Carousel(carousel, {
+          interval: 4000,
+          wrap: true,
+        });
+      }
+    </script>
+  </body>
 </html>
