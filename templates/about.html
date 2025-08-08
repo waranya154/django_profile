@@ -1,64 +1,17 @@
 {% extends "base.html" %}
 
-{% block title %}ติดต่อเรา - เว็บแอป Jirasak{% endblock %}
-
-{% block content %}
-<!DOCTYPE html>
-<html lang="th">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>My Profile - VASINEE</title>
-    <link
-      href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css"
-    />
-    <style>
-      :root {
-        --primary: #ec4899;
-        --secondary: #be185d;
-        --accent: #831843;
-        --light: #fce7f3;
-        --bg: #fdf2f8;
-        --border: #fbcfe8;
-        --shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-      }
-
-      body {
-        background: var(--bg);
-        min-height: 100vh;
-{% extends "base.html" %}
-
-{% block title %}เกี่ยวกับฉัน - VASINEE{% endblock %}
+{% block title %}เกี่ยวกับฉัน - VASINEE webapp{% endblock %}
 
 {% block content %}
 <style>
-  :root {
-    --primary: #ec4899;
-    --secondary: #be185d;
-    --accent: #831843;
-    --light: #fce7f3;
-    --bg: #fdf2f8;
-    --border: #fbcfe8;
-    --shadow: 0 4px 20px rgba(236, 72, 153, 0.1);
-  }
-  body {
-    background: var(--bg);
-    min-height: 100vh;
-    font-family: "Segoe UI", Tahoma, Geneva, Verdana, sans-serif;
-  }
   .profile-info,
   .table-container {
     background: white;
     border-radius: 20px;
     padding: 20px;
     margin: 20px 0;
-    box-shadow: var(--shadow);
-    border: 2px solid var(--border);
+    box-shadow: 0 4px 20px rgba(236, 72, 153, 0.10);
+    border: 2px solid #fbcfe8;
     animation: fadeInUp 0.8s ease-out;
   }
   .table-container {
@@ -76,9 +29,10 @@
   }
   h2,
   h3 {
-    color: var(--primary) !important;
+    color: #ec4899 !important;
     font-size: 1.8rem;
     margin-bottom: 15px !important;
+    font-family: 'Kanit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
   }
   .info-grid {
     display: grid;
@@ -87,7 +41,7 @@
     margin-top: 15px;
   }
   .info-item {
-    background: var(--light);
+    background: #fce7f3;
     padding: 15px;
     border-radius: 12px;
     text-align: center;
@@ -96,26 +50,26 @@
   .info-icon {
     font-size: 1.8rem;
     margin-bottom: 10px;
-    color: var(--primary);
+    color: #ec4899;
   }
   .info-title {
     font-size: 1.1rem;
     font-weight: 600;
     margin-bottom: 8px;
-    color: var(--secondary);
+    color: #be185d;
   }
   .info-desc {
-    color: var(--accent);
+    color: #831843;
     line-height: 1.4;
     font-size: 0.9rem;
   }
   .table {
-    background: var(--bg);
+    background: #fdf2f8;
     border-radius: 15px;
     overflow: hidden;
   }
   .table thead {
-    background: var(--primary);
+    background: #ec4899;
   }
   .table thead td {
     color: white;
@@ -124,12 +78,12 @@
     border: none;
   }
   .table tbody td {
-    color: var(--accent);
+    color: #831843;
     padding: 15px;
-    border-color: var(--border);
+    border-color: #fbcfe8;
   }
   .table-hover tbody tr:hover {
-    background-color: var(--light);
+    background-color: #fce7f3;
   }
   @media (max-width: 768px) {
     .profile-info {
@@ -149,7 +103,7 @@
   <!-- Profile Header -->
   <div class="profile-info text-center" style="margin-top: 30px">
     <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui1.png" alt="Profile Image" class="rounded-circle shadow" style="width: 150px; height: 150px; object-fit: cover; border: 5px solid #fbcfe8;" />
-    <h2 class="mt-3 mb-1" style="color: var(--secondary)"><i class="fas fa-star text-warning"></i> นางสาววาสินี มาฤทธิ์</h2>
+    <h2 class="mt-3 mb-1" style="color: #be185d"><i class="fas fa-star text-warning"></i> นางสาววาสินี มาฤทธิ์</h2>
     <p class="text-muted" style="font-size: 1rem">รหัสนักศึกษา : 6712732126 | สาขาวิทยาการคอมพิวเตอร์ ปี 2 | มหาวิทยาลัยราชภัฏศรีสะเกษ</p>
   </div>
   <!-- Compact Profile Info -->

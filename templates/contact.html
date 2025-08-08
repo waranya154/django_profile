@@ -1,143 +1,228 @@
-{% extends "base.html" %}
+{% extends 'base.html' %}
 
-{% block title %}ติดต่อเรา - เว็บแอป VASINEE{% endblock %}
-
-{% block content %}
-<!DOCTYPE html>
-<html lang="th">
-<head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Contact Me - VASINEE</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet">
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css">
-    <style>
-        @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-        
-        :root {
-            --primary: #ec4899;
-            --secondary: #be185d;
-            --accent: #831843;
-            --light: #fce7f3;
-            --bg: #fdf2f8;
-            --border: #fbcfe8;
-        }
-        
-        * { margin: 0; padding: 0; box-sizing: border-box; }
-        
-        body {
-            background: linear-gradient(135deg, var(--bg) 0%, #fff1f2 50%, #fce7f3 100%);
-            min-height: 100vh;
-            font-family: 'Kanit', sans-serif;
-            overflow-x: hidden;
-        }
-        
-        body::before {
-            content: '';
-            position: fixed;
-            top: -50%; left: -50%;
-            width: 200%; height: 200%;
-            background: radial-gradient(circle, rgba(236, 72, 153, 0.05) 0%, transparent 70%);
-            animation: float 20s ease-in-out infinite;
-            z-index: -1;
-        }
-        
-        @keyframes float {
-            0%, 100% { transform: translate(0px, 0px) rotate(0deg); }
-            33% { transform: translate(30px, -30px) rotate(120deg); }
-            66% { transform: translate(-20px, 20px) rotate(240deg); }
-        }
-        
-        @keyframes fadeInUp {
-            from { opacity: 0; transform: translateY(50px) scale(0.9); }
-            to { opacity: 1; transform: translateY(0) scale(1); }
-        }
-        
-        @keyframes fadeInDown {
-            from { opacity: 0; transform: translateY(-30px); }
-            to { opacity: 1; transform: translateY(0); }
-        }
-        
-        @keyframes bounce {
-            0%, 20%, 50%, 80%, 100% { transform: translateY(0); }
-            40% { transform: translateY(-10px); }
-            60% { transform: translateY(-5px); }
-        }
-        
-        @keyframes pulse { 0%, 100% { transform: scale(1); } 50% { transform: scale(1.05); } }
-        
-        @keyframes shimmer {
-            0% { background-position: -200px 0; }
-            100% { background-position: calc(200px + 100%) 0; }
-        }
-        
-        .container { max-width: 800px; padding: 20px; }
-        
-        .hero-header {
-            text-align: center;
-            margin: 40px 0 60px 0;
-            animation: fadeInDown 1s ease-out;
-        }
-        
-        .hero-title {
-            font-size: 3.5rem;
-            font-weight: 700;
-            background: linear-gradient(135deg, #ec4899, #f472b6);
-            -webkit-background-clip: text;
-            -webkit-text-fill-color: transparent;
-            margin-bottom: 15px;
-            position: relative;
-        }
-        
-        .hero-title::after {
-            content: '💖';
-            position: absolute;
-            right: -50px; top: 10px;
-            animation: bounce 2s infinite;
-        }
-        
-        .hero-subtitle {
-            font-size: 1.3rem;
-            color: var(--secondary);
-            font-weight: 400;
-            margin-bottom: 20px;
-        }
-        
-        .card-base {
-            background: rgba(255, 255, 255, 0.95);
-            backdrop-filter: blur(20px);
-            border-radius: 30px;
-            padding: 40px;
-            margin: 20px 0;
-            box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25);
-            border: 2px solid var(--border);
-            position: relative;
-            overflow: hidden;
-        }
-        
-        .card-base::before {
-            content: '';
-            position: absolute;
-            top: 0; left: -100%;
-            width: 100%; height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
-            animation: shimmer 3s infinite;
-        }
-        
-        .profile-info {
-            animation: fadeInUp 1s ease-out 0.3s both;
-        }
-        
-        .profile-info h2 {
-            font-size: 2.2rem;
-{% extends "base.html" %}
-
-{% block title %}ติดต่อเรา - เว็บแอป Jirasak{% endblock %}
+{% block title %}ติดต่อเรา - VASINEE webapp{% endblock %}
 
 {% block content %}
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
 <style>
     @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-    /* ...existing code... */
+    .floating-elements {
+        position: fixed;
+        top: 0; left: 0;
+        width: 100%; height: 100%;
+        pointer-events: none;
+        z-index: -1;
+    }
+    .floating-element {
+        position: absolute;
+        opacity: 0.1;
+        animation: floatRandom 15s infinite linear;
+    }
+    .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; color: #ec4899; }
+    .floating-element:nth-child(2) { top: 60%; right: 10%; animation-delay: 5s; color: #be185d; }
+    .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 10s; color: #831843; }
+    @keyframes floatRandom {
+        0%, 100% { transform: translateY(0px) rotate(0deg); }
+        25% { transform: translateY(-20px) rotate(90deg); }
+        50% { transform: translateY(10px) rotate(180deg); }
+        75% { transform: translateY(-15px) rotate(270deg); }
+    }
+    .hero-header {
+        text-align: center;
+        margin: 40px 0 60px 0;
+        animation: fadeInDown 1s ease-out;
+    }
+    .hero-title {
+        font-size: 3.5rem;
+        font-weight: 700;
+        background: linear-gradient(135deg, #ec4899, #f472b6);
+        -webkit-background-clip: text;
+        -webkit-text-fill-color: transparent;
+        margin-bottom: 15px;
+        position: relative;
+    }
+    .hero-title::after {
+        content: '💖';
+        position: absolute;
+        right: -50px; top: 10px;
+        animation: bounce 2s infinite;
+    }
+    .hero-subtitle {
+        font-size: 1.3rem;
+        color: #be185d;
+        font-weight: 400;
+        margin-bottom: 20px;
+    }
+    .stats-row {
+        display: flex;
+        justify-content: center;
+        gap: 30px;
+        margin: 40px 0;
+        flex-wrap: wrap;
+    }
+    .stat-card {
+        background: #fff;
+        backdrop-filter: blur(15px);
+        border-radius: 20px;
+        padding: 25px;
+        text-align: center;
+        min-width: 120px;
+        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
+        border: 2px solid #fbcfe8;
+        transition: all 0.3s ease;
+        animation: fadeInUp 1s ease-out 0.9s both;
+    }
+    .stat-card:hover { 
+        transform: translateY(-5px); 
+        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25); 
+    }
+    .stat-number {
+        font-size: 2rem;
+        font-weight: 700;
+        color: #ec4899;
+        margin-bottom: 5px;
+    }
+    .stat-label {
+        font-size: 0.9rem;
+        color: #831843;
+        font-weight: 500;
+    }
+    .card-base {
+        background: rgba(255, 255, 255, 0.95);
+        backdrop-filter: blur(20px);
+        border-radius: 30px;
+        padding: 40px;
+        margin: 20px 0;
+        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25);
+        border: 2px solid #fbcfe8;
+        position: relative;
+        overflow: hidden;
+    }
+    .card-base::before {
+        content: '';
+        position: absolute;
+        top: 0; left: -100%;
+        width: 100%; height: 100%;
+        background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
+        animation: shimmer 3s infinite;
+    }
+    @keyframes shimmer {
+        0% { background-position: -200px 0; }
+        100% { background-position: calc(200px + 100%) 0; }
+    }
+    .card-base h2 {
+        color: #831843;
+        font-size: 1.8rem;
+        margin-bottom: 30px;
+        text-align: center;
+    }
+    .contact-list {
+        list-style: none;
+        padding: 0; margin: 0 auto;
+        max-width: 500px;
+        position: relative;
+        z-index: 1;
+    }
+    .contact-item {
+        margin-bottom: 20px;
+        background: linear-gradient(135deg, #fff 0%, #fefefe 100%);
+        padding: 20px 25px;
+        border-radius: 20px;
+        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        display: flex;
+        align-items: center;
+        position: relative;
+        overflow: hidden;
+        border: 2px solid transparent;
+        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
+        cursor: pointer;
+    }
+    .contact-item:hover {
+        transform: translateY(-8px) scale(1.03);
+        box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
+        border-color: #ec4899;
+    }
+    .contact-icon {
+        width: 50px; height: 50px;
+        font-size: 1.4rem;
+        margin-right: 20px;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        border-radius: 15px;
+        transition: all 0.3s ease;
+        color: white;
+        position: relative;
+        overflow: hidden;
+    }
+    .icon-facebook { 
+        background: linear-gradient(135deg, #1877f2, #42a5f5);
+        box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
+    }
+    .icon-instagram { 
+        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
+        box-shadow: 0 4px 15px rgba(214, 36, 159, 0.3);
+    }
+    .icon-line { 
+        background: linear-gradient(135deg, #00c300, #00b300);
+        box-shadow: 0 4px 15px rgba(0, 195, 0, 0.3);
+    }
+    .icon-email { 
+        background: linear-gradient(135deg, #ea4335 0%, #fbbc05 25%, #34a853 50%, #4285f4 75%, #9c27b0 100%);
+        box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
+    }
+    .icon-phone { 
+        background: linear-gradient(135deg, #03a9f4, #0288d1);
+        box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
+    }
+    .contact-icon:hover {
+        transform: scale(1.1) rotate(5deg);
+        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
+    }
+    .contact-content { flex: 1; }
+    .contact-label {
+        font-size: 0.9rem;
+        color: #831843;
+        font-weight: 500;
+        margin-bottom: 3px;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+    }
+    .contact-link {
+        color: #be185d;
+        text-decoration: none;
+        font-size: 1.1rem;
+        font-weight: 500;
+        transition: all 0.3s ease;
+        position: relative;
+    }
+    .contact-link::after {
+        content: '';
+        position: absolute;
+        bottom: -2px; left: 0;
+        width: 0; height: 2px;
+        background: linear-gradient(135deg, #ec4899, #f472b6);
+        transition: width 0.3s ease;
+    }
+    .contact-link:hover::after { width: 100%; }
+    .contact-link:hover { color: #ec4899; transform: translateX(5px); }
+    .icon-facebook .fab { font-size: 1.8rem; }
+    .icon-instagram .fab { font-size: 1.6rem; }
+    .icon-line .fab { font-size: 1.7rem; }
+    .icon-email .fas { font-size: 1.4rem; }
+    .icon-phone .fas { font-size: 1.3rem; }
+    @media (max-width: 768px) {
+        .hero-title { font-size: 2.5rem; }
+        .hero-title::after { right: -30px; top: 5px; }
+        .card-base { padding: 25px; margin: 15px 0; border-radius: 20px; }
+        .contact-item { padding: 15px 20px; margin-bottom: 15px; }
+        .contact-icon { width: 40px; height: 40px; font-size: 1.2rem; margin-right: 15px; }
+        .stats-row { gap: 15px; }
+    }
+    @media (max-width: 480px) {
+        .hero-title { font-size: 2rem; }
+        .contact-list { max-width: 100%; }
+    }
 </style>
 <div class="floating-elements">
     <i class="fas fa-heart floating-element" style="font-size: 2rem;"></i>
@@ -153,7 +238,6 @@
             <i class="fas fa-sparkles"></i> พร้อมที่จะพูดคุยและเชื่อมต่อกับคุณ <i class="fas fa-sparkles"></i>
         </p>
     </div>
-
     <div class="stats-row">
         <div class="stat-card">
             <div class="stat-number">24/7</div>
@@ -168,7 +252,6 @@
             <div class="stat-label">เป็นมิตร</div>
         </div>
     </div>
-
     <div class="card-base profile-info">
         <h2><i class="fas fa-comments"></i> ช่องทางติดต่อ</h2>
         <ul class="contact-list">
@@ -183,7 +266,6 @@
                     </a>
                 </div>
             </li>
-
             <li class="contact-item" onclick="window.open('https://www.instagram.com/littlee.ii/', '_blank')">
                 <div class="contact-icon icon-instagram">
                     <i class="fab fa-instagram"></i>
@@ -195,7 +277,6 @@
                     </a>
                 </div>
             </li>
-
             <li class="contact-item" onclick="window.open('https://line.me/ti/p/3TIUOcU7WA', '_blank')">
                 <div class="contact-icon icon-line">
                     <i class="fab fa-line"></i>
@@ -207,7 +288,6 @@
                     </a>
                 </div>
             </li>
-
             <li class="contact-item" onclick="copyToClipboard('vasineemalit2546@gmail.com')">
                 <div class="contact-icon icon-email">
                     <i class="fas fa-envelope"></i>
@@ -219,7 +299,6 @@
                     </a>
                 </div>
             </li>
-
             <li class="contact-item" onclick="copyToClipboard('0936168113')">
                 <div class="contact-icon icon-phone">
                     <i class="fas fa-phone"></i>
@@ -235,212 +314,19 @@
     </div>
 </div>
 <script>
-function copyToClipboard(text) {
-    navigator.clipboard.writeText(text);
-    alert('คัดลอกข้อมูลเรียบร้อย: ' + text);
-}
+    function copyToClipboard(text) {
+        navigator.clipboard.writeText(text).then(function() {
+            alert('คัดลอกข้อมูลเรียบร้อย : ' + text);
+        }).catch(function(err) {
+            // Fallback for older browsers
+            const textArea = document.createElement('textarea');
+            textArea.value = text;
+            document.body.appendChild(textArea);
+            textArea.select();
+            document.execCommand('copy');
+            document.body.removeChild(textArea);
+            alert('คัดลอกข้อมูลเรียบร้อย : ' + text);
+        });
+    }
 </script>
-{% endblock content %}
-            min-width: 120px;
-            box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
-            border: 2px solid var(--border);
-            transition: all 0.3s ease;
-            animation: fadeInUp 1s ease-out 0.9s both;
-        }
-        
-        .stat-card:hover { transform: translateY(-5px); box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25); }
-        
-        .stat-number {
-            font-size: 2rem;
-            font-weight: 700;
-            color: var(--primary);
-            margin-bottom: 5px;
-        }
-        
-        .stat-label {
-            font-size: 0.9rem;
-            color: var(--accent);
-            font-weight: 500;
-        }
-        
-        @media (max-width: 768px) {
-            .hero-title { font-size: 2.5rem; }
-            .hero-title::after { right: -30px; top: 5px; }
-            .card-base { padding: 25px; margin: 15px 0; border-radius: 20px; }
-            .contact-item { padding: 15px 20px; margin-bottom: 15px; }
-            .contact-icon { width: 40px; height: 40px; font-size: 1.2rem; margin-right: 15px; }
-            .stats-row { gap: 15px; }
-        }
-        
-        @media (max-width: 480px) {
-            .hero-title { font-size: 2rem; }
-            .contact-list { max-width: 100%; }
-        }
-    </style>
-</head>
-
-<body>
-    <div class="floating-elements">
-        <i class="fas fa-heart floating-element" style="font-size: 2rem;"></i>
-        <i class="fas fa-envelope floating-element" style="font-size: 1.5rem;"></i>
-        <i class="fas fa-phone floating-element" style="font-size: 1.8rem;"></i>
-    </div>
-    <nav
-        class="navbar navbar-expand-lg navbar-light shadow-sm"
-        style="
-          background: linear-gradient(to right, #fbcfe8, #fdf2f8, #fce7f3);
-          border-bottom: 2px solid #f9a8d4;
-        "
-      >
-        <div class="container-fluid">
-          <a
-            class="navbar-brand fw-bold text-pink"
-            href="/"
-            style="color: #be185d; font-size: 1.5rem"
-          >
-            <i class="fas fa-user-graduate me-2"></i>VASINEE
-          </a>
-          <button
-            class="navbar-toggler"
-            type="button"
-            data-bs-toggle="collapse"
-            data-bs-target="#navbarNav"
-            aria-controls="navbarNav"
-            aria-expanded="false"
-            aria-label="Toggle navigation"
-          >
-            <span
-              class="navbar-toggler-icon"
-              style="filter: hue-rotate(300deg)"
-            ></span>
-          </button>
-          <div
-            class="collapse navbar-collapse justify-content-end"
-            id="navbarNav"
-          >
-            <ul class="navbar-nav">
-              <li class="nav-item">
-                <a
-                  class="nav-link active fw-semibold"
-                  aria-current="page"
-                  href="/"
-                  style="color: #be185d"
-                >
-                  <i class="fas fa-home me-1"></i>หน้าแรก
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link fw-semibold"
-                  href="/about"
-                  style="color: #be185d"
-                >
-                  <i class="fas fa-user me-1"></i>เกี่ยวกับฉัน
-                </a>
-              </li>
-              <li class="nav-item">
-                <a
-                  class="nav-link fw-semibold"
-                  href="/contact"
-                  style="color: #be185d"
-                >
-                  <i class="fas fa-envelope me-1"></i>ติดต่อ
-                </a>
-              </li>
-            </ul>
-          </div>
-        </div>
-      </nav>
-    <div class="container">
-        <div class="hero-header">
-            <h1 class="hero-title">
-                <i class="fas fa-address-book"></i> ติดต่อฉัน
-            </h1>
-            <p class="hero-subtitle">
-                <i class="fas fa-sparkles"></i> พร้อมที่จะพูดคุยและเชื่อมต่อกับคุณ <i class="fas fa-sparkles"></i>
-            </p>
-        </div>
-
-        <div class="stats-row">
-            <div class="stat-card">
-                <div class="stat-number">24/7</div>
-                <div class="stat-label">พร้อมตอบ</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">5+</div>
-                <div class="stat-label">ช่องทาง</div>
-            </div>
-            <div class="stat-card">
-                <div class="stat-number">100%</div>
-                <div class="stat-label">เป็นมิตร</div>
-            </div>
-        </div>
-
-        <div class="card-base profile-info">
-            <h2><i class="fas fa-comments"></i> ช่องทางติดต่อ</h2>
-            <ul class="contact-list">
-                <li class="contact-item" onclick="window.open('https://www.facebook.com/vasinee423', '_blank')">
-                    <div class="contact-icon icon-facebook">
-                        <i class="fab fa-facebook-f"></i>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-label">Facebook</div>
-                        <a href="https://www.facebook.com/vasinee423" target="_blank" class="contact-link external-link">
-                            Vasinee Marit
-                        </a>
-                    </div>
-                </li>
-
-                <li class="contact-item" onclick="window.open('https://www.instagram.com/littlee.ii/', '_blank')">
-                    <div class="contact-icon icon-instagram">
-                        <i class="fab fa-instagram"></i>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-label">Instagram</div>
-                        <a href="https://www.instagram.com/littlee.ii/" target="_blank" class="contact-link external-link">
-                            @littlee.ii
-                        </a>
-                    </div>
-                </li>
-
-                <li class="contact-item" onclick="window.open('https://line.me/ti/p/3TIUOcU7WA', '_blank')">
-                    <div class="contact-icon icon-line">
-                        <i class="fab fa-line"></i>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-label">Line</div>
-                        <a href="https://line.me/ti/p/3TIUOcU7WA" target="_blank" class="contact-link external-link">
-                            - VASINEE -
-                        </a>
-                    </div>
-                </li>
-
-                <li class="contact-item" onclick="copyToClipboard('vasineemalit2546@gmail.com')">
-                    <div class="contact-icon icon-email">
-                        <i class="fas fa-envelope"></i>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-label">Email</div>
-                        <a href="mailto:vasineemalit2546@gmail.com" class="contact-link">
-                            vasineemalit2546@gmail.com
-                        </a>
-                    </div>
-                </li>
-
-                <li class="contact-item" onclick="copyToClipboard('0936168113')">
-                    <div class="contact-icon icon-phone">
-                        <i class="fas fa-phone"></i>
-                    </div>
-                    <div class="contact-content">
-                        <div class="contact-label">โทรศัพท์</div>
-                        <a href="tel:0936168113" class="contact-link">
-                            0936168113
-                        </a>
-                    </div>
-                </li>
-            </ul>
-        </div>
-</body>
-</html>
-
-{% endblock content %}
+{% endblock %}

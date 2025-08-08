@@ -11,6 +11,7 @@ def about(request):
 def contact(request):
     return render(request, 'contact.html')
 
+
 def for_view(request):
     context = {}
     context['message'] = "การวนซ้ำใน_Django"
@@ -20,10 +21,10 @@ def for_view(request):
         context['count'] = list(range(1,number +1))
     else:
         context['count'] = list(range(1, 2))
-        
+   
     return render(request, 'for.html',context)
 
-def multipli(request):
+def table_view(request):
     context = {}
     context['message'] = "ตารางสูตรคูณ"
     

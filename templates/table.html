@@ -3,7 +3,7 @@
 {% block content %}
 <div class="card mb-4">
   <div class="card-body">
-    <form method="post" action="{% url 'multipli' %}">
+    <form method="post" action="{% url 'table' %}">
       {% csrf_token %}
       <div class="mb-3">
         <label for="numberInput" class="form-label">ป้อนตัวเลขที่ต้องการดูสูตรคูณ</label>
@@ -23,7 +23,7 @@
       <table class="table table-striped">
         <thead>
           <tr>
-            <th scope="col">ตัวเลข</th>
+            <th scope="col">แม่สูตรคูณ</th>
             <th scope="col">ตัวคูณ</th>
             <th scope="col">ผลลัพธ์</th>
           </tr>
@@ -39,7 +39,7 @@
         </tbody>
       </table>
     {% else %}
-      <p class="text-muted">กรุณาป้อนตัวเลขแล้วกดแสดงสูตรคูณ</p>
+      <p class="text-muted">กรุณาป้อนตัวเลข แล้วกดแสดงสูตรคูณ</p>
     {% endif %}
   </div>
 </div>

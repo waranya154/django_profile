@@ -1,6 +1,6 @@
 {% extends 'base.html' %}
 
-{% block title %}My Profile - VASINEE{% endblock %}
+{% block title %}VASINEE webapp{% endblock %}
 
 {% block content %}
 <!-- Hero Section -->
@@ -15,38 +15,21 @@
       <i class="fas fa-id-card"></i> 6712732126 |
       มหาวิทยาลัยราชภัฏศรีสะเกษ
     </p>
-    <div class="stats-container">
-      <div class="stat-item" data-bs-toggle="tooltip" title="เป้าหมายในการเรียน">
-        <div class="stat-number">4.0</div>
-        <div class="stat-label">เป้าหมาย GPA</div>
-      </div>
-      <div class="stat-item" data-bs-toggle="tooltip" title="ความตั้งใจในการเรียน">
-        <div class="stat-number">100%</div>
-        <div class="stat-label">ความมุ่งมั่น</div>
-      </div>
-      <div class="stat-item" data-bs-toggle="tooltip" title="ความฝันไม่มีที่สิ้นสุด">
-        <div class="stat-number">∞</div>
-        <div class="stat-label">ความฝัน</div>
-      </div>
-    </div>
   </div>
 </div>
 
 <!-- Image Carousel -->
-<div class="carousel-container">
+<div class="carousel-container mb-5">
   <div id="carouselExampleControls" class="carousel slide" data-bs-ride="carousel" data-bs-interval="4000">
     <div class="carousel-inner">
       <div class="carousel-item active">
         <img src="https://scontent-sin11-2.xx.fbcdn.net/v/t39.30808-6/486614177_1056761386497472_1373887252774764261_n.jpg?_nc_cat=101&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeGPHthRtTZZR8fGhp658cZTZq5Dj9bN_r5mrkOP1s3-vpGmX5tGOzPltB6g6b7xF_XgaOTRGiA54QnRfBw4RFJ1&_nc_ohc=gO-xxsj8XVIQ7kNvwFw7ZDZ&_nc_oc=AdkUEkqnLdJbkoM6FDa31WclGbyYOQo4MLQ63Xje4Ad9aqULIVg50oyhCIYdLd-VXHz3YPvi6ZdVE8-4jz4plivg&_nc_zt=23&_nc_ht=scontent-sin11-2.xx&_nc_gid=fFGvoB9wX8KcL7L783s54Q&oh=00_AfSRONpCyrFnVsygg5QE0RZGeCJOyJNT1ByCa8AV0ruFNA&oe=68866382" class="d-block w-100" alt="ห้องเรียนมหาวิทยาลัย" />
-        <div class="carousel-caption d-none d-md-block"></div>
       </div>
       <div class="carousel-item">
         <img src="https://scontent-sin2-1.xx.fbcdn.net/v/t39.30808-6/517391795_1144094211097522_168857366512749669_n.jpg?stp=cp6_dst-jpg_tt6&_nc_cat=102&ccb=1-7&_nc_sid=127cfc&_nc_eui2=AeF0IiH6WltN1c3mQBmIJdNjEuVQ7TQmNOES5VDtNCY04QHmL391xJGFxg6vrlhtEUYlQfR24aZt9oM26vzhMmCT&_nc_ohc=nDec0gbHFbAQ7kNvwEXrTcI&_nc_oc=Adn5Yo1HNADYDBiQQHhntHmgK4MLCMqkdO_nGZFb_vS22wI4_8lqI4c-x4DhoXzhTw6Dt7B4-9NwTGytaXznk0fM&_nc_zt=23&_nc_ht=scontent-sin2-1.xx&_nc_gid=esuuAsvxQtrm5jQkEJji4g&oh=00_AfS3VUBpmQtGve9B6WJ8R2UD1TBvdXdTjq3qhS4neKxucA&oe=688676DD" class="d-block w-100" alt="ห้องสมุดมหาวิทยาลัย" />
-        <div class="carousel-caption d-none d-md-block"></div>
       </div>
       <div class="carousel-item">
         <img src="https://scontent-sin2-3.xx.fbcdn.net/v/t39.30808-6/512682644_1128734065966870_3479146191705279387_n.jpg?stp=cp6_dst-jpegr_tt6&_nc_cat=107&ccb=1-7&_nc_sid=f727a1&_nc_eui2=AeHkucpPWdmBjUnUdIfWlAws_kVrbIbE4WT-RWtshsThZHRyhOHcDal6pvL1zF1Q7Gr66gEwFSvzGAZJBman7bVN&_nc_ohc=26lKF6AhWFYQ7kNvwH2Ij86&_nc_oc=Adl0yvPdD_SHorae6zDUVx-SMVYCOWUiEYC53hvoWfKu1bDhxeQdnfVZpV4riRXKIxhWfKOKCF4dtpzhg3W4xGFi&_nc_zt=23&se=-1&_nc_ht=scontent-sin2-3.xx&_nc_gid=-3QoXvdTUSzXd7etPK9s4Q&oh=00_AfR7qxHPL_f0sA1OQkIOMKKe9IswmbGICdAB9z5KZu5NzQ&oe=68868482" class="d-block w-100" alt="บรรยากาศมหาวิทยาลัย" />
-        <div class="carousel-caption d-none d-md-block"></div>
       </div>
     </div>
     <button class="carousel-control-prev" type="button" data-bs-target="#carouselExampleControls" data-bs-slide="prev">
@@ -59,6 +42,9 @@
     </button>
   </div>
 </div>
+
+<!-- Bootstrap JS for Carousel (if not already in base.html) -->
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
 
 <h2 class="section-title">
   <i class="fas fa-images"></i> ภาพบรรยากาศชีวิตการเรียน
