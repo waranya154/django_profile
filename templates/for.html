@@ -1,43 +1,48 @@
-{% extends "base.html" %} {% block content %}
-<div class="card mb-4">
-  <div class="card-body">
+{% extends "base.html" %}
+
+{% block title %}วนซ้ำ - VASINEE webapp{% endblock %}
+
+{% block content %}
+<div class="container">
+  <div class="card mb-4 p-4 shadow">
     <form method="post" action="{% url 'for' %}">
       {% csrf_token %}
       <div class="mb-3">
-        <label for="numberInput" class="form-label">ป้อนตัวเลขที่ต้องการ</label>
-        <input type="number" class="form-control" id="count" name="count" />
+        <label for="count" class="form-label fw-semibold" style="color:var(--pink-dark)">ป้อนตัวเลขที่ต้องการ</label>
+        <input type="number" class="form-control" id="count" name="count" min="1" required />
       </div>
-      <button type="submit" class="btn btn-primary">Submit</button>
+      <button type="submit" class="btn btn-primary px-4">Submit</button>
+    </form>
   </div>
-  </form>
-</div>
 
-<div class="card">
-  <div class="card-header">
-    <h2 class="mb-0">{{ message }}</h2>
+  <div class="card shadow">
+    <div class="card-header bg-pink text-white">
+      <h2 class="mb-0" style="color:white">{{ message }}</h2>
+    </div>
     <div class="card-body">
-      <table class="table">
-        <thead>
-          <tr>
-            <th scope="col">#</th>
-            <th scope="col">First</th>
-            <th scope="col">Last</th>
-            <th scope="col">Handle</th>
-          </tr>
-        </thead>
-        <tbody>
-          {% for i in count %}
-          <tr>
-            <th scope="row">{{ forloop.counter }}</th>
-            <td>Mark</td>
-            <td>Otto</td>
-            <td>@mdo</td>
-          </tr>
-          {% endfor %}
-        </tbody>
-      </table>
+      <div class="table-responsive">
+        <table class="table table-hover table-striped align-middle">
+          <thead class="bg-pink text-white">
+            <tr>
+              <th scope="col">#</th>
+              <th scope="col">First</th>
+              <th scope="col">Last</th>
+              <th scope="col">Handle</th>
+            </tr>
+          </thead>
+          <tbody>
+            {% for i in count %}
+            <tr>
+              <th scope="row">{{ forloop.counter }}</th>
+              <td>Mark</td>
+              <td>Otto</td>
+              <td>@mdo</td>
+            </tr>
+            {% endfor %}
+          </tbody>
+        </table>
+      </div>
     </div>
   </div>
-
-  {% endblock content %}
 </div>
+{% endblock content %}

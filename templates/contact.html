@@ -3,314 +3,79 @@
 {% block title %}ติดต่อเรา - VASINEE webapp{% endblock %}
 
 {% block content %}
-<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-<style>
-    @import url('https://fonts.googleapis.com/css2?family=Kanit:wght@300;400;500;600;700&display=swap');
-    .floating-elements {
-        position: fixed;
-        top: 0; left: 0;
-        width: 100%; height: 100%;
-        pointer-events: none;
-        z-index: -1;
-    }
-    .floating-element {
-        position: absolute;
-        opacity: 0.1;
-        animation: floatRandom 15s infinite linear;
-    }
-    .floating-element:nth-child(1) { top: 20%; left: 10%; animation-delay: 0s; color: #ec4899; }
-    .floating-element:nth-child(2) { top: 60%; right: 10%; animation-delay: 5s; color: #be185d; }
-    .floating-element:nth-child(3) { bottom: 20%; left: 20%; animation-delay: 10s; color: #831843; }
-    @keyframes floatRandom {
-        0%, 100% { transform: translateY(0px) rotate(0deg); }
-        25% { transform: translateY(-20px) rotate(90deg); }
-        50% { transform: translateY(10px) rotate(180deg); }
-        75% { transform: translateY(-15px) rotate(270deg); }
-    }
-    .hero-header {
-        text-align: center;
-        margin: 40px 0 60px 0;
-        animation: fadeInDown 1s ease-out;
-    }
-    .hero-title {
-        font-size: 3.5rem;
-        font-weight: 700;
-        background: linear-gradient(135deg, #ec4899, #f472b6);
-        -webkit-background-clip: text;
-        -webkit-text-fill-color: transparent;
-        margin-bottom: 15px;
-        position: relative;
-    }
-    .hero-title::after {
-        content: '💖';
-        position: absolute;
-        right: -50px; top: 10px;
-        animation: bounce 2s infinite;
-    }
-    .hero-subtitle {
-        font-size: 1.3rem;
-        color: #be185d;
-        font-weight: 400;
-        margin-bottom: 20px;
-    }
-    .stats-row {
-        display: flex;
-        justify-content: center;
-        gap: 30px;
-        margin: 40px 0;
-        flex-wrap: wrap;
-    }
-    .stat-card {
-        background: #fff;
-        backdrop-filter: blur(15px);
-        border-radius: 20px;
-        padding: 25px;
-        text-align: center;
-        min-width: 120px;
-        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
-        border: 2px solid #fbcfe8;
-        transition: all 0.3s ease;
-        animation: fadeInUp 1s ease-out 0.9s both;
-    }
-    .stat-card:hover { 
-        transform: translateY(-5px); 
-        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25); 
-    }
-    .stat-number {
-        font-size: 2rem;
-        font-weight: 700;
-        color: #ec4899;
-        margin-bottom: 5px;
-    }
-    .stat-label {
-        font-size: 0.9rem;
-        color: #831843;
-        font-weight: 500;
-    }
-    .card-base {
-        background: rgba(255, 255, 255, 0.95);
-        backdrop-filter: blur(20px);
-        border-radius: 30px;
-        padding: 40px;
-        margin: 20px 0;
-        box-shadow: 0 8px 32px rgba(236, 72, 153, 0.25);
-        border: 2px solid #fbcfe8;
-        position: relative;
-        overflow: hidden;
-    }
-    .card-base::before {
-        content: '';
-        position: absolute;
-        top: 0; left: -100%;
-        width: 100%; height: 100%;
-        background: linear-gradient(90deg, transparent, rgba(236, 72, 153, 0.1), transparent);
-        animation: shimmer 3s infinite;
-    }
-    @keyframes shimmer {
-        0% { background-position: -200px 0; }
-        100% { background-position: calc(200px + 100%) 0; }
-    }
-    .card-base h2 {
-        color: #831843;
-        font-size: 1.8rem;
-        margin-bottom: 30px;
-        text-align: center;
-    }
-    .contact-list {
-        list-style: none;
-        padding: 0; margin: 0 auto;
-        max-width: 500px;
-        position: relative;
-        z-index: 1;
-    }
-    .contact-item {
-        margin-bottom: 20px;
-        background: linear-gradient(135deg, #fff 0%, #fefefe 100%);
-        padding: 20px 25px;
-        border-radius: 20px;
-        transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
-        display: flex;
-        align-items: center;
-        position: relative;
-        overflow: hidden;
-        border: 2px solid transparent;
-        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.15);
-        cursor: pointer;
-    }
-    .contact-item:hover {
-        transform: translateY(-8px) scale(1.03);
-        box-shadow: 0 15px 40px rgba(236, 72, 153, 0.3);
-        border-color: #ec4899;
-    }
-    .contact-icon {
-        width: 50px; height: 50px;
-        font-size: 1.4rem;
-        margin-right: 20px;
-        display: flex;
-        align-items: center;
-        justify-content: center;
-        border-radius: 15px;
-        transition: all 0.3s ease;
-        color: white;
-        position: relative;
-        overflow: hidden;
-    }
-    .icon-facebook { 
-        background: linear-gradient(135deg, #1877f2, #42a5f5);
-        box-shadow: 0 4px 15px rgba(24, 119, 242, 0.3);
-    }
-    .icon-instagram { 
-        background: radial-gradient(circle at 30% 107%, #fdf497 0%, #fdf497 5%, #fd5949 45%, #d6249f 60%, #285AEB 90%);
-        box-shadow: 0 4px 15px rgba(214, 36, 159, 0.3);
-    }
-    .icon-line { 
-        background: linear-gradient(135deg, #00c300, #00b300);
-        box-shadow: 0 4px 15px rgba(0, 195, 0, 0.3);
-    }
-    .icon-email { 
-        background: linear-gradient(135deg, #ea4335 0%, #fbbc05 25%, #34a853 50%, #4285f4 75%, #9c27b0 100%);
-        box-shadow: 0 4px 15px rgba(234, 67, 53, 0.3);
-    }
-    .icon-phone { 
-        background: linear-gradient(135deg, #03a9f4, #0288d1);
-        box-shadow: 0 4px 15px rgba(3, 169, 244, 0.3);
-    }
-    .contact-icon:hover {
-        transform: scale(1.1) rotate(5deg);
-        box-shadow: 0 8px 25px rgba(0,0,0,0.2);
-    }
-    .contact-content { flex: 1; }
-    .contact-label {
-        font-size: 0.9rem;
-        color: #831843;
-        font-weight: 500;
-        margin-bottom: 3px;
-        text-transform: uppercase;
-        letter-spacing: 0.5px;
-    }
-    .contact-link {
-        color: #be185d;
-        text-decoration: none;
-        font-size: 1.1rem;
-        font-weight: 500;
-        transition: all 0.3s ease;
-        position: relative;
-    }
-    .contact-link::after {
-        content: '';
-        position: absolute;
-        bottom: -2px; left: 0;
-        width: 0; height: 2px;
-        background: linear-gradient(135deg, #ec4899, #f472b6);
-        transition: width 0.3s ease;
-    }
-    .contact-link:hover::after { width: 100%; }
-    .contact-link:hover { color: #ec4899; transform: translateX(5px); }
-    .icon-facebook .fab { font-size: 1.8rem; }
-    .icon-instagram .fab { font-size: 1.6rem; }
-    .icon-line .fab { font-size: 1.7rem; }
-    .icon-email .fas { font-size: 1.4rem; }
-    .icon-phone .fas { font-size: 1.3rem; }
-    @media (max-width: 768px) {
-        .hero-title { font-size: 2.5rem; }
-        .hero-title::after { right: -30px; top: 5px; }
-        .card-base { padding: 25px; margin: 15px 0; border-radius: 20px; }
-        .contact-item { padding: 15px 20px; margin-bottom: 15px; }
-        .contact-icon { width: 40px; height: 40px; font-size: 1.2rem; margin-right: 15px; }
-        .stats-row { gap: 15px; }
-    }
-    @media (max-width: 480px) {
-        .hero-title { font-size: 2rem; }
-        .contact-list { max-width: 100%; }
-    }
-</style>
-<div class="floating-elements">
-    <i class="fas fa-heart floating-element" style="font-size: 2rem;"></i>
-    <i class="fas fa-envelope floating-element" style="font-size: 1.5rem;"></i>
-    <i class="fas fa-phone floating-element" style="font-size: 1.8rem;"></i>
-</div>
 <div class="container">
-    <div class="hero-header">
-        <h1 class="hero-title">
+    <div class="card mb-4 p-4 text-center shadow profile-info position-relative overflow-hidden">
+        <div class="floating-elements position-absolute w-100 h-100" style="z-index:0;top:0;left:0;pointer-events:none;">
+            <i class="fas fa-heart floating-element" style="font-size: 2rem; position:absolute; top:20%; left:10%; opacity:0.08; color:var(--pink)"></i>
+            <i class="fas fa-envelope floating-element" style="font-size: 1.5rem; position:absolute; top:60%; right:10%; opacity:0.08; color:var(--pink-dark)"></i>
+            <i class="fas fa-phone floating-element" style="font-size: 1.8rem; position:absolute; bottom:20%; left:20%; opacity:0.08; color:var(--pink-darker)"></i>
+        </div>
+        <h1 class="hero-title mb-2" style="font-size:2.5rem; font-weight:700; background: linear-gradient(135deg, var(--pink), var(--pink-lighter)); -webkit-background-clip: text; -webkit-text-fill-color: transparent; position:relative; z-index:1;">
             <i class="fas fa-address-book"></i> ติดต่อฉัน
         </h1>
-        <p class="hero-subtitle">
+        <p class="hero-subtitle mb-4" style="color:var(--pink-dark); font-size:1.2rem; z-index:1; position:relative;">
             <i class="fas fa-sparkles"></i> พร้อมที่จะพูดคุยและเชื่อมต่อกับคุณ <i class="fas fa-sparkles"></i>
         </p>
-    </div>
-    <div class="stats-row">
-        <div class="stat-card">
-            <div class="stat-number">24/7</div>
-            <div class="stat-label">พร้อมตอบ</div>
+        <div class="row justify-content-center mb-4" style="z-index:1; position:relative;">
+            <div class="col-auto">
+                <div class="stat-card p-3 rounded-4 bg-white border border-pink shadow-sm mb-2">
+                    <div class="stat-number" style="font-size:2rem; color:var(--pink)">24/7</div>
+                    <div class="stat-label" style="color:var(--pink-darker)">พร้อมตอบ</div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="stat-card p-3 rounded-4 bg-white border border-pink shadow-sm mb-2">
+                    <div class="stat-number" style="font-size:2rem; color:var(--pink)">5+</div>
+                    <div class="stat-label" style="color:var(--pink-darker)">ช่องทาง</div>
+                </div>
+            </div>
+            <div class="col-auto">
+                <div class="stat-card p-3 rounded-4 bg-white border border-pink shadow-sm mb-2">
+                    <div class="stat-number" style="font-size:2rem; color:var(--pink)">100%</div>
+                    <div class="stat-label" style="color:var(--pink-darker)">เป็นมิตร</div>
+                </div>
+            </div>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">5+</div>
-            <div class="stat-label">ช่องทาง</div>
+        <div class="card p-4 mx-auto profile-info" style="max-width:600px; z-index:1; position:relative;">
+            <h2 class="mb-4" style="color:var(--pink-darker)"><i class="fas fa-comments"></i> ช่องทางติดต่อ</h2>
+            <ul class="list-unstyled contact-list">
+                <li class="contact-item d-flex align-items-center mb-3 p-3 rounded-3 bg-light border border-pink shadow-sm" style="cursor:pointer;" onclick="window.open('https://www.facebook.com/vasinee423', '_blank')">
+                    <div class="contact-icon d-flex align-items-center justify-content-center rounded-3 me-3" style="width:48px;height:48px;background:linear-gradient(135deg,#1877f2,#42a5f5);color:white;"><i class="fab fa-facebook-f"></i></div>
+                    <div class="contact-content flex-grow-1">
+                        <div class="contact-label">Facebook</div>
+                        <a href="https://www.facebook.com/vasinee423" target="_blank" class="contact-link">Vasinee Marit</a>
+                    </div>
+                </li>
+                <li class="contact-item d-flex align-items-center mb-3 p-3 rounded-3 bg-light border border-pink shadow-sm" style="cursor:pointer;" onclick="window.open('https://www.instagram.com/littlee.ii/', '_blank')">
+                    <div class="contact-icon d-flex align-items-center justify-content-center rounded-3 me-3" style="width:48px;height:48px;background:radial-gradient(circle at 30% 107%,#fdf497 0%,#fd5949 45%,#d6249f 60%,#285AEB 90%);color:white;"><i class="fab fa-instagram"></i></div>
+                    <div class="contact-content flex-grow-1">
+                        <div class="contact-label">Instagram</div>
+                        <a href="https://www.instagram.com/littlee.ii/" target="_blank" class="contact-link">@littlee.ii</a>
+                    </div>
+                </li>
+                <li class="contact-item d-flex align-items-center mb-3 p-3 rounded-3 bg-light border border-pink shadow-sm" style="cursor:pointer;" onclick="window.open('https://line.me/ti/p/3TIUOcU7WA', '_blank')">
+                    <div class="contact-icon d-flex align-items-center justify-content-center rounded-3 me-3" style="width:48px;height:48px;background:linear-gradient(135deg,#00c300,#00b300);color:white;"><i class="fab fa-line"></i></div>
+                    <div class="contact-content flex-grow-1">
+                        <div class="contact-label">Line</div>
+                        <a href="https://line.me/ti/p/3TIUOcU7WA" target="_blank" class="contact-link">- VASINEE -</a>
+                    </div>
+                </li>
+                <li class="contact-item d-flex align-items-center mb-3 p-3 rounded-3 bg-light border border-pink shadow-sm" style="cursor:pointer;" onclick="copyToClipboard('vasineemalit2546@gmail.com')">
+                    <div class="contact-icon d-flex align-items-center justify-content-center rounded-3 me-3" style="width:48px;height:48px;background:linear-gradient(135deg,#ea4335 0%,#fbbc05 25%,#34a853 50%,#4285f4 75%,#9c27b0 100%);color:white;"><i class="fas fa-envelope"></i></div>
+                    <div class="contact-content flex-grow-1">
+                        <div class="contact-label">Email</div>
+                        <a href="mailto:vasineemalit2546@gmail.com" class="contact-link">vasineemalit2546@gmail.com</a>
+                    </div>
+                </li>
+                <li class="contact-item d-flex align-items-center mb-3 p-3 rounded-3 bg-light border border-pink shadow-sm" style="cursor:pointer;" onclick="copyToClipboard('0936168113')">
+                    <div class="contact-icon d-flex align-items-center justify-content-center rounded-3 me-3" style="width:48px;height:48px;background:linear-gradient(135deg,#03a9f4,#0288d1);color:white;"><i class="fas fa-phone"></i></div>
+                    <div class="contact-content flex-grow-1">
+                        <div class="contact-label">โทรศัพท์</div>
+                        <a href="tel:0936168113" class="contact-link">0936168113</a>
+                    </div>
+                </li>
+            </ul>
         </div>
-        <div class="stat-card">
-            <div class="stat-number">100%</div>
-            <div class="stat-label">เป็นมิตร</div>
-        </div>
-    </div>
-    <div class="card-base profile-info">
-        <h2><i class="fas fa-comments"></i> ช่องทางติดต่อ</h2>
-        <ul class="contact-list">
-            <li class="contact-item" onclick="window.open('https://www.facebook.com/vasinee423', '_blank')">
-                <div class="contact-icon icon-facebook">
-                    <i class="fab fa-facebook-f"></i>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-label">Facebook</div>
-                    <a href="https://www.facebook.com/vasinee423" target="_blank" class="contact-link external-link">
-                        Vasinee Marit
-                    </a>
-                </div>
-            </li>
-            <li class="contact-item" onclick="window.open('https://www.instagram.com/littlee.ii/', '_blank')">
-                <div class="contact-icon icon-instagram">
-                    <i class="fab fa-instagram"></i>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-label">Instagram</div>
-                    <a href="https://www.instagram.com/littlee.ii/" target="_blank" class="contact-link external-link">
-                        @littlee.ii
-                    </a>
-                </div>
-            </li>
-            <li class="contact-item" onclick="window.open('https://line.me/ti/p/3TIUOcU7WA', '_blank')">
-                <div class="contact-icon icon-line">
-                    <i class="fab fa-line"></i>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-label">Line</div>
-                    <a href="https://line.me/ti/p/3TIUOcU7WA" target="_blank" class="contact-link external-link">
-                        - VASINEE -
-                    </a>
-                </div>
-            </li>
-            <li class="contact-item" onclick="copyToClipboard('vasineemalit2546@gmail.com')">
-                <div class="contact-icon icon-email">
-                    <i class="fas fa-envelope"></i>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-label">Email</div>
-                    <a href="mailto:vasineemalit2546@gmail.com" class="contact-link">
-                        vasineemalit2546@gmail.com
-                    </a>
-                </div>
-            </li>
-            <li class="contact-item" onclick="copyToClipboard('0936168113')">
-                <div class="contact-icon icon-phone">
-                    <i class="fas fa-phone"></i>
-                </div>
-                <div class="contact-content">
-                    <div class="contact-label">โทรศัพท์</div>
-                    <a href="tel:0936168113" class="contact-link">
-                        0936168113
-                    </a>
-                </div>
-            </li>
-        </ul>
     </div>
 </div>
 <script>
