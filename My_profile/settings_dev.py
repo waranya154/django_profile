@@ -23,9 +23,9 @@ BASE_DIR = Path(__file__).resolve().parent.parent
 SECRET_KEY = 'django-insecure-48_p=c^4iwf06xxz*%)w6@)9)@555oq3=cbn8e9zv9tanyxc5s'
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True # เปิด debug เพื่อพัฒนา
+DEBUG = True  # เปิด DEBUG เพื่อดู error
 
-ALLOWED_HOSTS = ['127.0.0.1', '.vercel.app', 'localhost'] # อนุญาตให้เข้าถึงจากโดเมนเหล่านี้
+ALLOWED_HOSTS = ['127.0.0.1','*.vercel.app']
 
 
 # Application definition
