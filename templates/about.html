@@ -1,45 +1,92 @@
 {% extends "base.html" %}
-
-{% block title %}เกี่ยวกับฉัน - VASINEE webapp{% endblock %}
-
+{% load static %}
+ 
+{% block title %}เกี่ยวกับฉัน - WARANYA webapp{% endblock %}
 {% block content %}
 <div class="container">
   <!-- Profile Header -->
-  <div class="card mb-4 p-4 text-center shadow profile-info" style="margin-top: 30px;">
-    <div class="d-flex justify-content-center align-items-center" style="min-height:170px;">
-      <img src="https://vasinee04.github.io/myweb_profile/assets/img/ui1.png" alt="Profile Image" class="rounded-circle shadow mb-3 mx-auto" style="width: 150px; height: 150px; object-fit: cover; border: 5px solid #fbcfe8; display:block;" />
+  <div
+    class="card mb-4 p-4 text-center shadow hero-section"
+    style="margin-top: 30px"
+  >
+    <div
+      class="d-flex justify-content-center align-items-center"
+      style="min-height: 170px"
+    >
+      <img
+        src="{% static 'assets/img/aummm12.jpg' %}"
+        alt="Profile Image"
+        class="rounded-circle shadow mb-3 mx-auto"
+        style="
+          width: 150px;
+          height: 150px;
+          object-fit: cover;
+          border: 5px solid #000000ff;
+          display: block;
+        "
+      />
     </div>
-    <h2 class="mt-3 mb-1" style="color: var(--pink-dark)"><i class="fas fa-star text-warning"></i> นางสาววาสินี มาฤทธิ์</h2>
-    <p class="text-muted" style="font-size: 1rem">รหัสนักศึกษา 6712732126 | สาขาวิทยาการคอมพิวเตอร์ ปี 2 | มหาวิทยาลัยราชภัฏศรีสะเกษ</p>
+    <h2 class="mt-3 mb-1" style="color: var(--pink-dark)">
+      <i class="fas fa-star text-warning"></i> นางสาววรัญญา ฉิมงาม
+    </h2>
+    <p class="text-muted" style="font-size: 1rem">
+      รหัสนักศึกษา 6712732125 | สาขาวิทยาการคอมพิวเตอร์ ปี 2 |
+      มหาวิทยาลัยราชภัฏศรีสะเกษ
+    </p>
   </div>
   <!-- Compact Profile Info -->
   <div class="card mb-4 p-4 profile-info">
-    <h2 class="text-center mb-4"><i class="fas fa-user-circle"></i> เกี่ยวกับฉัน</h2>
+    <h2 class="text-center mb-4">
+      <i class="fas fa-user-circle"></i> เกี่ยวกับฉัน
+    </h2>
     <div class="row g-3">
       <div class="col-md-3 col-6">
-        <div class="info-item p-3 rounded-3 text-center bg-light border border-pink">
-          <div class="info-icon mb-2"><i class="fas fa-heart" style="color: var(--pink)"></i></div>
+        <div
+          class="info-item p-3 rounded-3 text-center bg-light border border-pink"
+        >
+          <div class="info-icon mb-2">
+            <i class="fas fa-heart" style="color: var(--pink)"></i>
+          </div>
           <div class="info-title">ความเชื่อ</div>
-          <div class="info-desc">การให้โดยไม่หวังผลตอบแทนคือความสุขที่แท้จริง</div>
+          <div class="info-desc">
+            การให้โดยไม่หวังผลตอบแทนคือความสุขที่แท้จริง
+          </div>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="info-item p-3 rounded-3 text-center bg-light border border-pink">
-          <div class="info-icon mb-2"><i class="fas fa-trophy" style="color: var(--pink-dark)"></i></div>
+        <div
+          class="info-item p-3 rounded-3 text-center bg-light border border-pink"
+        >
+          <div class="info-icon mb-2">
+            <i class="fas fa-trophy" style="color: var(--pink-dark)"></i>
+          </div>
           <div class="info-title">เป้าหมาย</div>
-          <div class="info-desc">ได้เกรด A ในทุกวิชาที่เรียน พร้อมเติบโตเป็นคนดี</div>
+          <div class="info-desc">เขียนในสิ่งที่อยากเขียน แบบไม่มีข้ออ้างใดๆ</div>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="info-item p-3 rounded-3 text-center bg-light border border-pink">
-          <div class="info-icon mb-2"><i class="fas fa-map-marker-alt" style="color: var(--pink-darker)"></i></div>
+        <div
+          class="info-item p-3 rounded-3 text-center bg-light border border-pink"
+        >
+          <div class="info-icon mb-2">
+            <i
+              class="fas fa-map-marker-alt"
+              style="color: var(--pink-darker)"
+            ></i>
+          </div>
           <div class="info-title">ที่รัก</div>
-          <div class="info-desc">ศรีสะเกษ - ดินแดนแห่งความรู้และทุเรียนที่สุด!</div>
+          <div class="info-desc">
+            ศรีสะเกษ - ดินแดนแห่งความรู้และทุเรียนที่สุด!
+          </div>
         </div>
       </div>
       <div class="col-md-3 col-6">
-        <div class="info-item p-3 rounded-3 text-center bg-light border border-pink">
-          <div class="info-icon mb-2"><i class="fas fa-users" style="color: var(--pink)"></i></div>
+        <div
+          class="info-item p-3 rounded-3 text-center bg-light border border-pink"
+        >
+          <div class="info-icon mb-2">
+            <i class="fas fa-users" style="color: var(--pink)"></i>
+          </div>
           <div class="info-title">ชุมชน</div>
           <div class="info-desc">เชื่อในพลังของความเป็นหนึ่งเดียวกัน</div>
         </div>
@@ -75,7 +122,7 @@
           <tr>
             <td>3</td>
             <td>ชีวิต</td>
-            <td>การเติบโตแบบรอบด้าน</td>
+            <td>การพัฒนาตนเองรอบด้าน</td>
             <td>พัฒนาต่อเนื่อง</td>
           </tr>
           <tr>

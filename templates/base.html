@@ -3,7 +3,7 @@
   <head>
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>{% block title %}VASINEE webapp{% endblock %}</title>
+    <title>{% block title %}WARANYA webapp{% endblock %}</title>
     <link
       href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css"
       rel="stylesheet"
@@ -13,23 +13,23 @@
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap-icons@1.11.1/font/bootstrap-icons.css">
     <style>
       :root {
-        --pink: #ec4899;
-        --pink-dark: #be185d;
-        --pink-darker: #831843;
-        --pink-light: #fce7f3;
-        --pink-lighter: #fbcfe8;
-        --pink-bg: #fdf2f8;
-        --text-color: #be185d;
+        --blue: #2563eb;
+        --blue-dark: #1e40af;
+        --blue-darker: #1e293b;
+        --gray: #374151;
+        --gray-dark: #111827;
+        --gray-light: #6b7280;
         --white: #fff;
+        --text-color: #e0e7ef;
       }
       body {
-        background: linear-gradient(135deg, var(--pink-bg) 0%, #fff1f2 100%) !important;
+        background: linear-gradient(135deg, var(--gray-dark) 0%, var(--blue-darker) 100%) !important;
         color: var(--text-color) !important;
         font-family: 'Kanit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
       .navbar {
-        background: linear-gradient(90deg, var(--pink), var(--pink-dark)) !important;
-        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.08);
+        background: linear-gradient(90deg, var(--gray), var(--blue-dark)) !important;
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
       }
       .navbar-brand, .nav-link {
         color: var(--white) !important;
@@ -37,52 +37,54 @@
         letter-spacing: 0.5px;
       }
       .nav-link.active, .nav-link:hover {
-        color: var(--pink-light) !important;
-        text-shadow: 0 2px 8px var(--pink-lighter);
+        color: var(--blue) !important;
+        text-shadow: 0 2px 8px var(--blue);
       }
       .btn-primary {
-        background: linear-gradient(90deg, var(--pink), var(--pink-dark));
+        background: linear-gradient(90deg, var(--blue), var(--gray));
         border: none;
         color: var(--white) !important;
         font-weight: 600;
-        box-shadow: 0 2px 8px var(--pink-lighter);
+        box-shadow: 0 2px 8px var(--blue);
       }
       .btn-primary:hover {
-        background: linear-gradient(90deg, var(--pink-dark), var(--pink));
+        background: linear-gradient(90deg, var(--gray), var(--blue));
         color: var(--white) !important;
       }
       .card {
-        background: var(--white) !important;
-        border: 2px solid var(--pink-lighter);
+        background: var(--gray-dark) !important;
+        border: 2px solid var(--blue);
         border-radius: 18px;
-        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.08);
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
+        color: var(--text-color) !important;
       }
       a {
-        color: var(--pink-dark) !important;
+        color: var(--blue) !important;
         transition: color 0.2s;
       }
       a:hover {
-        color: var(--pink) !important;
+        color: var(--white) !important;
       }
       h1, h2, h3, h4, h5, h6 {
-        color: var(--pink-dark) !important;
+        color: var(--blue) !important;
         font-family: 'Kanit', 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
       }
       .hero-section {
-        background: linear-gradient(90deg, var(--pink-light), var(--pink-bg));
+        background: linear-gradient(90deg, var(--gray), var(--blue-darker));
         border-radius: 20px;
-        box-shadow: 0 4px 20px rgba(236, 72, 153, 0.08);
+        box-shadow: 0 4px 20px rgba(37, 99, 235, 0.08);
         padding: 2rem 1rem;
         margin-bottom: 2rem;
+        color: var(--text-color) !important;
       }
       .hero-section h1, .hero-section p {
-        color: var(--pink-dark) !important;
+        color: var(--blue) !important;
       }
       .bg-primary {
-        background: linear-gradient(90deg, var(--pink), var(--pink-dark)) !important;
+        background: linear-gradient(90deg, var(--blue), var(--gray)) !important;
       }
       .footer, footer.bg-dark {
-        background: linear-gradient(90deg, var(--pink-dark), var(--pink)) !important;
+        background: linear-gradient(90deg, var(--gray), var(--blue-dark)) !important;
         color: var(--white) !important;
         border-radius: 20px 20px 0 0;
       }
@@ -90,7 +92,7 @@
         color: var(--white) !important;
       }
       .bi {
-        color: var(--pink) !important;
+        color: var(--blue) !important;
       }
       @media (max-width: 768px) {
         .navbar-brand { font-size: 1.1rem; }
@@ -105,7 +107,7 @@
       <div class="container">
         <a class="navbar-brand fw-bold" href="/">
           <i class="bi bi-bootstrap-fill me-2"></i>
-          Webapp - VASINEE
+          Webapp - WARANYA
         </a>
         
         <button 
@@ -138,6 +140,16 @@
               </a>
             </li>
             <li class="nav-item">
+              <a class="nav-link text-white fw-semibold" href="{% url 'student' %}">
+                <i class="bi bi-people-fill me-1"></i>รายชื่อนักศึกษา
+              </a>
+            </li>
+             <li class="nav-item">
+              <a class="nav-link text-white fw-semibold" href="{% url 'subject' %}">
+                <i class="bi bi-journal-bookmark-fill me-1"></i>รายวิชา
+              </a>
+            </li>
+            <li class="nav-item">
               <a class="nav-link text-white fw-semibold" href="{% url "about" %}">
                 <i class="bi bi-info-circle-fill me-1"></i>เกี่ยวกับเรา
               </a>
@@ -162,10 +174,7 @@
       <div class="container">
         <div class="row">
           <div class="col-md-6">
-            <h5>Webapp - VASINEE</h5>
+            <h5>Webapp - WARANYA</h5>
           </div>
         </div>
       </div>
-    </footer>
-  </body>
-</html>

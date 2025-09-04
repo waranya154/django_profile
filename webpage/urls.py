@@ -7,4 +7,6 @@ urlpatterns = [
     path('contact/', views.contact, name='contact'),   
     path('for/', views.for_view, name='for'),
     path('table/', views.table_view, name='table'),
+    path('student/', views.student, name='student'),
+    path('subject/', views.subjects, name='subject'),
 ]
